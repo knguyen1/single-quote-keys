@@ -1,0 +1,120 @@
+[project]
+name = "single-quote-keys"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "libcst>=1.8.2",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["sqk"]
+exclude = ["tests"]
+
+[build-system]
+requires = ["setuptools>=80.9.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+single-quote-keys = "sqk.cli:main"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.3.0",
+    "pytest>=8.4.1",
+    "pytest-xdist>=3.8.0",
+    "ruff>=0.12.8",
+    "ty>=0.0.1a17",
+]
+
+[tool.ruff]
+target-version = "py312"
+extend-include = ["*.ipynb"]
+
+[tool.ruff.format]
+preview = true
+docstring-code-format = true
+docstring-code-line-length = 20
+
+[tool.ruff.lint]
+preview = true
+select = [
+    "E4",
+    "E7",
+    "E9",
+    "W291",
+    "YTT",
+    "T10",
+    "ICN",
+    "INP",
+    "Q",
+    "RSE",
+    "SLOT",
+    "INT",
+    "FLY",
+    "LOG",
+    "C90",
+    "T20",
+    "D",
+    "RET",
+    "PD",
+    "N",
+    "PIE",
+    "SIM",
+    "S",
+    "G",
+    "ERA",
+    "ASYNC",
+    "TID",
+    "UP",
+    "SLF",
+    "BLE",
+    "C4",
+    "I",
+    "F",
+    "A",
+    "ARG",
+    "PTH",
+    "RUF",
+    "B",
+    "TCH",
+    "DTZ",
+    "PYI",
+    "PT",
+    "EM",
+    "TRY",
+    "PERF",
+    "CPY",
+    # "ANN"
+]
+ignore = [
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "D", "ANN", "T201", "ASYNC", "ARG", "PTH", "TRY", "SLF001"]
+"*.ipynb" = ["T201"]
+"examples/*" = ["BLE001"]
+"build.py" = ["T201", "ERA001"]
+
+[tool.ruff.lint.flake8-builtins]
+builtins-ignorelist = ["input", "id", "bytes"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.uv]
+default-groups = ["dev"]
+[tool.single-quote-keys]
+# Glob patterns to exclude from processing (per-file opt-out)
+exclude = []
+
+
+[tool.coverage.run]
+omit = [
+    "tests/",
+    "test_*.py",
+    "*_test.py",
+    "*/tests/*",
+]
