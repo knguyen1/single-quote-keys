@@ -1,0 +1,7 @@
+- id: single-quote-keys
+  name: Single-quote keys
+  description: Convert double quotes to single quotes for keys in Python code
+  entry: single-quote-keys
+  language: python
+  types: [python]
+  pass_filenames: true
